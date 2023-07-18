@@ -2,3 +2,89 @@
   text-align: center;
 }
 
+.ymaps-2-1-79-gototech {
+  display: none!important;
+}
+
+YMaps{
+  position: absolute;
+  z-index: 1;
+}
+
+#check{
+  position: absolute;
+  z-index: 100;
+  padding: 0px;
+  margin: 10px;
+  height: 20px;
+  font-size: 8px;
+  border: 1px solid black;
+  border-radius: 10px;
+  background-color: chartreuse;
+}
+#check>p{
+  position: relative;
+  text-align: center;
+  vertical-align: middle;
+  margin: 3px;
+}
+
+
+.dropdown-checkbox{
+  background-color: #7463A3;
+  color: white;
+  border: 1px solid black;
+  text-align: center;
+  margin-top: 5px;
+  margin-left: 5px;
+  vertical-align: middle;
+  border-radius: 10px;
+  position: absolute;
+  font-size: 12px;
+  padding: 0px 4px 4px 2px;
+  z-index: 100;
+}
+
+.dropdown-checkbox .label-title{
+  font-size:9px;
+  
+}
+.dropdown-checkbox ul{
+    position: absolute;
+    background: #FFFCFC;
+    list-style: none;
+    min-width: 120px;
+    margin: 5px 0px 0px 0px;
+    padding: 0px;
+    left:0px;
+    display:none;
+    z-index:1;
+    border: 1px solid #9c9c9c;
+}
+.dropdown-checkbox ul li{
+    font-size: 8px;
+    text-align: left;
+    padding: 5px;
+    color: black;
+    border-bottom: 1px solid #a5a5a5;
+    margin: -4px 0px 2px 0px;
+}
+.dropdown-checkbox ul li input{
+  margin: 4px 2px 0px 0px;
+  height: 9px;
+}
+
+.dropdown-checkbox:hover ul{
+  display:block
+}
+
+.balloonContentBody{
+  background: green;
+}
+
+.baloon{
+  background: #000;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+}

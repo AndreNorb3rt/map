@@ -22,7 +22,8 @@ export const Sidebar = ({ width, height, children }) => {
         style={{
           transform: `translatex(${xPosition}px)`,
           width: width,
-          minHeight: height
+          minHeight: height,
+          position: "absolute"
         }}
       >
         <button
@@ -37,3 +38,5 @@ export const Sidebar = ({ width, height, children }) => {
     </React.Fragment>
   );
 };
+
+export default Sidebar;

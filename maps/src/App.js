@@ -1,4 +1,4 @@
-import { YMaps, Map, Clusterer, Placemark } from 'react-yandex-maps';
+import { YMaps, Map, Placemark } from 'react-yandex-maps';
 import './App.css';
 
 const mapState = { center: [51.53, 46.02], zoom: 13, controls: [] };
@@ -40,10 +40,13 @@ const rentalPoint = [
   },
 ];
 
-const getPointData = (index) => {
+const getPointData = (index, name) => {
   return {
-    balloonContentBody: "placemark <strong>balloon " + index + "</strong>",
-    clusterCaption: "placemark <strong>" + index + "</strong>"
+    clusterCaption: "placemark <strong>" + index + "</strong>",
+    balloonContentHeader: "<h3>"+name+"</h3>",
+    balloonContentBody: "<div class='baloon'><br><p>Цена:</p></div>",
+    balloonContentFooter: "Подвал",
+    hintContent: "<p>"+name+"</p>"
   };
 };
 
@@ -53,38 +56,47 @@ const getPointOptions = () => {
   };
 };
 
+
 function App() {
   return (
     <div id="main">
-      <YMaps>
-        <div id="map">
-          <Map width = '100%'height = '100vh'state={mapState}>
-            <Clusterer
-              options={{
-                preset: "islands#invertedVioletClusterIcons",
-                groupByCoordinates: false
-              }}
-            >
-              {bikeParkings.map((items) => (
-                <Placemark
-                  key={items.id}
-                  geometry={items.coords}
-                  properties={getPointData(items.id)}
-                  options={getPointOptions()}
-                />
-              ))}
-              {rentalPoint.map((items) => (
-                <Placemark
-                  key={items.id}
-                  geometry={items.coords}
-                  properties={getPointData(items.id)}
-                  options={{preset: "islands#darkGreenDotIcon"}}
-                />
-              ))}
-            </Clusterer>
-          </Map>
-        </div>
+      
+        <YMaps>
+          <div id="map">
+            <div class="dropdown-checkbox form-group">
+              <label class="label-title">Категории</label>
+              <ul>
+                <li><label><input type="checkbox" name="type[]"/>Велопарковки</label></li>
+                <li><label><input type="checkbox" name="type[]"/>Пункты проката</label></li>
+                <li><label><input type="checkbox" name="type[]"/>Пункты обслуживания</label></li>
+                <li><label><input type="checkbox" name="type[]"/>Спортивные кружки</label></li>
+                <li><label><input type="checkbox" name="type[]"/>Веломаршруты</label></li>
+                <li><label><input type="checkbox" name="type[]"/>Магазины</label></li>
+                <li><label><input type="checkbox" name="type[]"/>Опасные участки</label></li>
+              </ul>
+            </div>
+            <Map width = '100%'height = '100vh'state={mapState}>
+                {bikeParkings.map((items) => (
+                  <Placemark
+                    key={items.id}
+                    geometry={items.coords}
+                    modules={['geoObject.addon.balloon', 'geoObject.addon.hint']}
+                    properties={getPointData(items.id, 'Велопарковка')}
+                    options={getPointOptions()}
+                  />
+                ))}
+                {rentalPoint.map((items) => (
+                  <Placemark
+                    key={items.id}
+                    geometry={items.coords}
+                    properties={getPointData(items.id, 'Место аренды')}
+                    options={{preset: "islands#darkGreenDotIcon"}}
+                  />
+                ))}
+            </Map>
+          </div>
       </YMaps>
+      
     </div>
   );
 }
